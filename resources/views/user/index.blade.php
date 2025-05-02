@@ -81,7 +81,37 @@
                                             </span>
                                         </p>
                                     </td>
-                                    <td class="px-6 py-4"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-4 items-center">
+                                            @if ($data->is_admin)
+                                            <form action="{{ route('user.removeadmin', $data) }}" method="Post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                                                    Remove Admin
+                                                </button>
+                                            </form>
+                                            @else
+                                            <form action="{{ route('user.makeadmin', $data) }}" method="Post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                    Make Admin
+                                                </button>
+                                            </form>
+                                            @endif
+                                            <form action="{{ route('user.destroy', $data) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-700">
