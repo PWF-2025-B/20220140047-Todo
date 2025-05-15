@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    Route::resource('categories', CategoryController::class)->except(['show']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function(){

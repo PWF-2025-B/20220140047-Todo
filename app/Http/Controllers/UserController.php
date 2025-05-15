@@ -40,15 +40,21 @@ class UserController extends Controller
     }
     public function removeadmin(User $user)
     {
-       if($user->id != 1){
+       if ($user->id != 1) {
             $user->timestamps = false;
             $user->is_admin = false;
             $user->save();
+
+            if (auth()->id() == $user->id) {
+                auth()->logout();
+                return redirect('/');
+            }
+
             return back()->with('success', 'User removed from admin successfully.');
-       }else{
-            return redirect()->route('user.index');
         }
+        return redirect()->route('user.index');
     }
+
 
     public function destroy(User $user)
     {
