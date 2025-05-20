@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="px-6 pt-6 mb-5">
-                    <div class="max-w-md mx-auto">
+                    <div class="max-w-md">
                         @if (request('search'))
                             <h2 class="pb-3 text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                                 Search results for: {{ request('search') }}
@@ -18,7 +18,7 @@
                         @endif
 
                         <form class="flex items-center gap-2">
-                            <x-text-input id="search" name="search" type="text" 
+                            <x-text-input id="search" name="search" type="text" class="w-full"
                                 placeholder="Search by name or email ..." value="{{ request('search') }}" autofocus />
                             <x-primary-button type="submit">
                                 {{ __('Search') }}
